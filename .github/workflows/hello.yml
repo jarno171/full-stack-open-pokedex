@@ -26,4 +26,4 @@ jobs:
     steps:
       - name: Print current directory
         run: |
-          ls
+          ls -l
