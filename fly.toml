@@ -20,7 +20,6 @@ kill_timeout = 5
   internal_port = 5000
   processes = ["app"]
   protocol = "tcp"
-  services.script_checks = []
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
@@ -51,3 +50,11 @@ kill_timeout = 5
     timeout = 2000
     tls_skip_verify = false
     [services.http_checks.headers]
+
+  [[services.script_checks]]
+    command       = "chmod +x /app/fly/health_check.sh && /app/fly/health_check.sh"
+    args          = []
+    grace_period  = "1s"
+    interval      = "5s"
+    restart_limit = 10
+    timeout       = "1s"
