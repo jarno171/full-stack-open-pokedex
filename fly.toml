@@ -53,8 +53,7 @@ kill_timeout = 5
 
   [[services.script_checks]]
     command       = "/app/fly/health_check.sh"
-    args          = []
     grace_period  = "1s"
     interval      = "5s"
-    restart_limit = 10
+    restart_limit = 0
     timeout       = "1s"
