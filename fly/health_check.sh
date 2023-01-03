@@ -4,8 +4,8 @@ response=$(curl --silent https://white-silence-6496.fly.dev/health)
 
 if [[ "$response" -eq "ok" ]] ; then
   echo "success"
-  exit 1
+  exit 0
 else
   echo "fail"
-  exit 0
+  exit 1
 fi
