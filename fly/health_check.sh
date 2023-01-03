@@ -1,5 +1,11 @@
 #!/bin/bash
 
-echo "Hello from shell script"
+response=$(curl --silent https://white-silence-6496.fly.dev/health)
 
-exit 0 # exit status 1 means that the script "fails"
+if [[ "$response" -eq "ok" ]] ; then
+  echo "success"
+  exit 1
+else
+  echo "fail"
+  exit 0
+fi
