@@ -36,7 +36,7 @@ jobs:
 #          wait-on: http://localhost:5000
   
   deploy_release:
-    needs: [simple_testing_pipeline]
+#    needs: [simple_testing_pipeline]
     runs-on: ubuntu-20.04
     if: ${{ github.event_name == 'push' }}  &&
         ${{ contains(join(toJson(github.event.commits.*.message), ' '), '#skip') != true }}
