@@ -54,7 +54,7 @@ jobs:
           DEFAULT_BUMP: "patch"
 
   notifications:
-    needs: [deploy_release]
+#    needs: [deploy_release]
     runs-on: ubuntu-20.04
     steps:
       - name: Test Success
