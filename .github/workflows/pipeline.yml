@@ -53,24 +53,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: "patch"
 
-  notifications:
-    needs: [simple_testing_pipeline]
-    runs-on: ubuntu-20.04
-    if: ${{ always() }}
-    steps:
-      - name: Test Success
-        uses: rjstone/discord-webhook-notify@v1
-        if: ${{ contains(needs.*.result, 'failure') != true }}
-        with:
-            severity: info
-            details: Test Succeeded!
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1
-        if: ${{ contains(needs.*.result, 'failure') }}
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-        with:
-            severity: error
-            details: Test Failed!
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+#  notifications:
+#    needs: [simple_testing_pipeline]
+#    runs-on: ubuntu-20.04
+#    if: ${{ always() }}
+#    steps:
+#      - name: Test Success
+#        uses: rjstone/discord-webhook-notify@v1
+#        if: ${{ contains(needs.*.result, 'failure') != true }}
+#        with:
+#            severity: info
+#            details: Test Succeeded!
+#            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+#      - name: Test Failure
+#        uses: rjstone/discord-webhook-notify@v1
+#        if: ${{ contains(needs.*.result, 'failure') }}
+#        env:
+#          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+#        with:
+#            severity: error
+#            details: Test Failed!
+#            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
