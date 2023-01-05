@@ -58,7 +58,7 @@ jobs:
     needs: [simple_testing_pipeline]
 #   needs: [deploy_release, simple_testing_pipeline] 
     runs-on: ubuntu-20.04
-#    if: ${{ always() && contains(*.result, 'failure') }}
+    if: ${{ always() }}
     steps:
       - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
