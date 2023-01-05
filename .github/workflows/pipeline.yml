@@ -54,9 +54,7 @@ jobs:
           DEFAULT_BUMP: "patch"
 
   notifications:
-#    needs: [deploy_release]
     needs: [simple_testing_pipeline]
-#   needs: [deploy_release, simple_testing_pipeline] 
     runs-on: ubuntu-20.04
     if: ${{ always() }}
     steps:
@@ -70,6 +68,8 @@ jobs:
       - name: Test Failure
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ contains(needs.*.result, 'failure') }}
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         with:
             severity: error
             details: Test Failed!
